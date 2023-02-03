@@ -1,6 +1,6 @@
 <?php
 
-namespace :package_vendor\:package_name;
+namespace HaydarSahin\CacheMigration;
 
 use Illuminate\Support\ServiceProvider;
 

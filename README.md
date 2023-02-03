@@ -1,6 +1,6 @@
-# :package_title
+# Laravel Cache Migration
 
-:package_description
+The package helpful about migrating redis cache for seamless deploys
 
 ## Requirement
 
@@ -13,7 +13,7 @@ Laravel >= 5.x
 Install via composer
 
 ```bash
-$ composer require :package_vendor/:package_name
+$ composer require haydarsahin/cache-migration
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [All contributors](https://github.com/laratoolbox/:package_name/graphs/contributors)
+- [All contributors](https://github.com/haydar/cache-migration/graphs/contributors)
 
 ## License
 
