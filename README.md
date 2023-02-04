@@ -2,10 +2,12 @@
 
 The package helpful about migrating redis cache for seamless deploys
 
+> **Note** This package is in development for now. Using on production is not suggested.
 ## Requirement
 
 ```
 Laravel >= 5.x
+PHP >= 7.1
 ```
 
 ## Installation
@@ -16,9 +18,54 @@ Install via composer
 $ composer require haydarsahin/cache-migration
 ```
 
+Run migration for creating `cache-migration` table.
+
+```bash
+$ php artisan migrate
+```
+
 ## Usage
 
-...
+The cache migrations is analogous with normal migration.
+
+Create a migration file.
+
+```bash
+$ php artisan make:cache-migration UsersCacheForget
+```
+
+Type pattern or patterns which you want forget to patterns array.
+
+```php
+<?php
+
+class UserCacheForget
+{
+
+   /*
+   |--------------------------------------------------------------------------
+   | Cache Migration File
+   |--------------------------------------------------------------------------
+   |
+   | Redis keys that you wish to clear should be added to the patterns array.
+   | Invalid patterns: '*', less than 3 characters.
+   |
+   */
+
+    public $patterns = [
+        'users:*',
+        'report:users:*:performance:*:dateRange:*:volumes',
+        'specificCacheKey:101:userId'
+    ];
+}
+
+```
+
+Run pending migrations manually or add this code to your deployment pipeline.
+
+```bash
+$ php artisan cache:migrate
+```
 
 ## Testing
 
