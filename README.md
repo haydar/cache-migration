@@ -18,7 +18,7 @@ Install via composer
 $ composer require haydarsahin/cache-migration
 ```
 
-Run migration for creating `cache-migration` table.
+Run migration for creating `cache-migrations` table.
 
 ```bash
 $ php artisan migrate
