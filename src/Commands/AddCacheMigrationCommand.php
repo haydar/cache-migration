@@ -33,9 +33,9 @@ class AddCacheMigrationCommand extends GeneratorCommand
      * Get stub path
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
-        return app_path('/Stubs/cache-migration.stub');
+        return __DIR__ . '/../Stubs/cache-migration.stub';
     }
 
     /**
@@ -44,7 +44,7 @@ class AddCacheMigrationCommand extends GeneratorCommand
      * @param string $name
      * @return string
      */
-    protected function getPath($name)
+    protected function getPath($name): string
     {
         $name = sprintf(
             '%s%s',
@@ -64,7 +64,7 @@ class AddCacheMigrationCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getDatePrefix()
+    protected function getDatePrefix(): string
     {
         return date('Y_m_d_His');
     }
@@ -76,7 +76,7 @@ class AddCacheMigrationCommand extends GeneratorCommand
      * @param string $name
      * @return string
      */
-    protected function replaceClass($stub, $name)
+    protected function replaceClass($stub, $name): string
     {
         $class = ucfirst(str_replace($this->getNamespace($name) . '\\', '', $name));
 
