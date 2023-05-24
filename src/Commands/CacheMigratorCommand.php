@@ -3,7 +3,6 @@
 namespace HaydarSahin\CacheMigration\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -41,7 +40,6 @@ class CacheMigratorCommand extends Command
      * Execute the migrate command.
      *
      * @return void
-     * @throws FileNotFoundException
      */
     public function handle(): void
     {
