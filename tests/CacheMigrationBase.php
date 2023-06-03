@@ -18,7 +18,7 @@ abstract class CacheMigrationBase extends TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            \HaydarSahin\CacheMigration\Tests\CacheMigrationServiceProvider::class,
+            \HaydarSahin\CacheMigration\CacheMigrationServiceProvider::class,
         ];
     }
 }
