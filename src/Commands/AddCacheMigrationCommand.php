@@ -66,7 +66,7 @@ class AddCacheMigrationCommand extends GeneratorCommand
      */
     protected function getDatePrefix(): string
     {
-        return date('Y_m_d_His');
+        return now()->format('Y_m_d_His');
     }
 
     /**
