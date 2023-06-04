@@ -48,7 +48,10 @@ class CacheMigratorCommand extends Command
         $ranMigrations = $this->getRanMigrations();
         $this->batch = $ranMigrations === [] ? 0 : ++last($ranMigrations)->batch;
 
-        $pendingMigrations = $this->pendingMigrations($filesArray, array_column($ranMigrations, 'migration'));
+        $pendingMigrations = $this->pendingMigrations(
+            $filesArray,
+            array_column($ranMigrations, 'migration')
+        );
 
         $this->requireFiles($pendingMigrations);
 
@@ -124,7 +127,7 @@ class CacheMigratorCommand extends Command
      * @param array $ran
      * @return array
      */
-    private function pendingMigrations(array $files, array $ran): array
+    public function pendingMigrations(array $files, array $ran): array
     {
         $batchOption = $this->option('batch');
 
