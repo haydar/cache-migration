@@ -1,26 +1,24 @@
 # Laravel Cache Migration
 
-The package helpful about migrating redis cache for seamless deploys
+The package is developed for make seamless deploys. You can delete your cache by adding the desired redis keys to the migration file.
 
 ## Requirement
 
-```
-Laravel >= 5.x
-PHP >= 7.1
-```
+- **Laravel** >= 5.x
+- **PHP** >= 7.1
 
 ## Installation
 
 Install via composer
 
 ```bash
-$ composer require haydarsahin/cache-migration
+composer require haydarsahin/cache-migration
 ```
 
 Run migration for creating `cache-migrations` table.
 
 ```bash
-$ php artisan migrate
+php artisan migrate
 ```
 
 ## Usage
@@ -30,10 +28,10 @@ The cache migrations is analogous with normal migration.
 Create a migration file.
 
 ```bash
-$ php artisan make:cache-migration UsersCacheForget
+php artisan make:cache-migration UsersCacheForget
 ```
 
-Type pattern or patterns which you want forget to patterns array.
+Type pattern or patterns which you want to forget to patterns array.
 
 ```php
 <?php
@@ -63,13 +61,13 @@ class UserCacheForget
 Run pending migrations manually or add this code to your deployment pipeline.
 
 ```bash
-$ php artisan cache:migrate
+php artisan cache:migrate
 ```
 
 ## Testing
 
 ``` bash
-$ composer test
+composer test
 ```
 
 ## Changelog

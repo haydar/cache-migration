@@ -228,7 +228,7 @@ class CacheMigratorCommand extends Command
                 continue;
             }
 
-            $patternKey = config('cache.prefix').":$pattern";
+            $patternKey = config('database.redis.options.prefix').config('cache.prefix').":$pattern";
 
             $keys = Redis::KEYS($patternKey);
 
