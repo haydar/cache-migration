@@ -3,7 +3,10 @@
 namespace HaydarSahin\CacheMigration\Tests\Feature;
 
 use HaydarSahin\CacheMigration\Tests\CacheMigrationBase;
+use Illuminate\Database\Console\Migrations\MigrateCommand;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Redis;
+use Mockery\Mock;
 
 class CacheMigratorCommandTest extends CacheMigrationBase
 {
@@ -29,6 +32,7 @@ class CacheMigratorCommandTest extends CacheMigrationBase
     public function test_migrate_without_pattern()
     {
         $this->createSampleMigrations();
+
         $this->artisan('cache:migrate')
             ->expectsOutput('Migrating: 2023_06_01_090000_sample_migration_one')
             ->expectsOutput('Patterns property or its a item are empty')
@@ -36,5 +40,44 @@ class CacheMigratorCommandTest extends CacheMigrationBase
             ->expectsOutput('Patterns property or its a item are empty')
             ->assertExitCode(0);
 
+    }
+
+    /**
+     * Check create migration status
+     *
+     * @return void
+     */
+    public function test_get_file_paths()
+    {
+        $this->createSampleMigrations();
+
+        $this->assertSame(
+            $this->command->getFilePaths(),
+            [
+                database_path('cache-migrations/2023_06_01_090000_sample_migration_one.php'),
+                database_path('cache-migrations/2023_06_01_090000_sample_migration_two.php')
+            ]
+        );
+    }
+
+    /**
+     * Check name of migrations which will be migrated
+     *
+     * @return void
+     */
+    public function test_get_migration_files()
+    {
+        $this->createSampleMigrations();
+        $filesArray = $this->command->getMigrationFiles($this->command->getFilePaths());
+
+        $this->assertSame(
+            $filesArray,
+            [
+                '2023_06_01_090000_sample_migration_one' =>
+                    database_path('cache-migrations/2023_06_01_090000_sample_migration_one.php'),
+                '2023_06_01_090000_sample_migration_two' =>
+                    database_path('cache-migrations/2023_06_01_090000_sample_migration_two.php')
+            ]
+        );
     }
 }

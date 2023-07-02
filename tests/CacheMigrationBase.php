@@ -19,9 +19,17 @@ abstract class CacheMigrationBase extends TestCase
         parent::setUp();
         File::deleteDirectory(database_path('cache-migrations/'));
         Carbon::setTestNow(self::TEST_DATETIME);
+        $this->command = new CacheMigratorCommand();
     }
 
     protected function getPackageProviders($app): array
+    {
+        return [
+            CacheMigrationServiceProvider::class,
+        ];
+    }
+
+    protected function defineEnvironment($app)
     {
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');
@@ -30,22 +38,22 @@ abstract class CacheMigrationBase extends TestCase
             'database' => ':memory:'
         ]);
 
-        return [
-            CacheMigrationServiceProvider::class,
-        ];
     }
 
     public function createSampleMigrations()
     {
         $this->artisan('make:cache-migration sampleMigrationOne');
         $this->artisan('make:cache-migration sampleMigrationTwo');
-
-        $this->command = new CacheMigratorCommand();
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
         File::deleteDirectory(database_path('cache-migrations/'));
+    }
+
+    protected function mockFileDirectory()
+    {
+        File::copyDirectory(__DIR__ . '/resources', $this->app->databasePath('cache-migrations'));
     }
 }
