@@ -2,7 +2,6 @@
 
 The package helpful about migrating redis cache for seamless deploys
 
-> **Note** This package is in development for now. Using on production is not suggested.
 ## Requirement
 
 ```
