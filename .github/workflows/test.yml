@@ -75,8 +75,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ matrix.prefer }}-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-${{ matrix.prefer }}-
+          key: ${{ matrix.os }}-${{ matrix.laravel }}-composer-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ matrix.os }}-${{ matrix.laravel }}-composer-${{ matrix.php }}
 
       -   name: Setup PHP
           uses: shivammathur/setup-php@v2
